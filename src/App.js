@@ -2,42 +2,30 @@
 import './App.css';
 // yarn add react-router-dom
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
-import MainPage from './pages/MainPage.js'
-import SubPage from './pages/SubPage.js'
+import AppBar from './pages/Common/AppBar.js';
+import MainPage from './pages/Main/MainPage.js';
+import SubPage from './pages/Sub/SubPage.js';
 
 const App = () => {
   return (
-    // <div className="App">
-    //   <header className="App-header">
-    //     <img src={logo} className="App-logo" alt="logo" />
-    //     <p>
-    //       Edit <code>src/App.js</code> and save to reload.
-    //     </p>
-    //     <a
-    //       className="App-link"
-    //       href="https://reactjs.org"
-    //       target="_blank"
-    //       rel="noopener noreferrer"
-    //     >
-    //       Learn React
-    //     </a>
-    //   </header>
-    // </div>
-    <Router>
-      <Switch>
-        <Route path="/myReactDemo/sub">
-          <SubPage />
-        </Route>
-        <Route path="/myReactDemo">
-          <MainPage />
-        </Route>
-        <Route path="/">
-          <MainPage />
-        </Route>
-      </Switch>
-      {/* <Route path="/myReactDemo" component={MainPage}/>
-      <Route path="/myReactDemo/sub" component={SubPage}/> */}
-    </Router>
+    <div style={{margin:0,padding:0}}>
+      <Router>
+        <Switch>
+          <Route exact path="/myReactDemo/sub">
+            <AppBar id={1}/>
+            <SubPage />
+          </Route>
+          <Route exact path="/myReactDemo">
+            <AppBar id={0}/>
+            <MainPage />
+          </Route>
+          <Route exact path="/">
+            <AppBar id={0}/>
+            <MainPage />
+          </Route>
+        </Switch>
+      </Router>
+    </div>
   );
 }
 
