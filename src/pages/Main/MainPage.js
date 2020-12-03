@@ -1,5 +1,4 @@
-
-import {useEffect} from 'react';
+import {useEffect, useState} from 'react';
 import './Main.css';
   
 const MainPage = () => {
@@ -44,32 +43,32 @@ const MainPage = () => {
             <div className="container">
                 <div className="mySlides">
                     <div className="numbertext">{"1 / 6"}</div>
-                    <img src={"https://cdn.pixabay.com/photo/2019/10/27/18/48/dumbo-4582501__480.jpg"} style={{width:"100%"}} alt="img"/>
+                    <img src={"https://cdn.pixabay.com/photo/2019/10/27/18/48/dumbo-4582501__480.jpg"}  alt="img"/>
                 </div>
 
                 <div className="mySlides">
                     <div className="numbertext">{"2 / 6"}</div>
-                    <img src={"https://cdn.pixabay.com/photo/2020/11/19/18/56/snow-5759500__480.jpg"} style={{width:"100%"}} alt="img"/>
+                    <img src={"https://cdn.pixabay.com/photo/2020/11/19/18/56/snow-5759500__480.jpg"}  alt="img"/>
                 </div>
 
                 <div className="mySlides">
                     <div className="numbertext">{"3 / 6"}</div>
-                    <img src={"https://cdn.pixabay.com/photo/2019/10/27/18/48/dumbo-4582501__480.jpg"} style={{width:"100%"}} alt="img"/>
+                    <img src={"https://cdn.pixabay.com/photo/2019/10/27/18/48/dumbo-4582501__480.jpg"}  alt="img"/>
                 </div>
                     
                 <div className="mySlides">
                     <div className="numbertext">{"4 / 6"}</div>
-                    <img src={"https://cdn.pixabay.com/photo/2020/11/19/18/56/snow-5759500__480.jpg"} style={{width:"100%"}} alt="img"/>
+                    <img src={"https://cdn.pixabay.com/photo/2020/11/19/18/56/snow-5759500__480.jpg"}  alt="img"/>
                 </div>
 
                 <div className="mySlides">
                     <div className="numbertext">{"5 / 6"}</div>
-                    <img src={"https://cdn.pixabay.com/photo/2019/10/27/18/48/dumbo-4582501__480.jpg"} style={{width:"100%"}} alt="img"/>
+                    <img src={"https://cdn.pixabay.com/photo/2019/10/27/18/48/dumbo-4582501__480.jpg"}  alt="img"/>
                 </div>
                     
                 <div className="mySlides">
                     <div className="numbertext">{"6 / 6"}</div>
-                    <img src={"https://cdn.pixabay.com/photo/2020/11/19/18/56/snow-5759500__480.jpg"} style={{width:"100%"}} alt="img"/>
+                    <img src={"https://cdn.pixabay.com/photo/2020/11/19/18/56/snow-5759500__480.jpg"}  alt="img"/>
                 </div>
                     
                 <button className="prev" onClick={() => plusSlides(-1)}>❮</button>
@@ -80,25 +79,46 @@ const MainPage = () => {
                 </div>
                 <div className="row">
                     <div className="column">
-                        <img className="demo cursor" src={"https://cdn.pixabay.com/photo/2019/10/27/18/48/dumbo-4582501__480.jpg"} style={{width:"100%"}} onClick={ () => currentSlide(1)} alt="The Woods" />
+                        <img className="demo cursor" src={"https://cdn.pixabay.com/photo/2019/10/27/18/48/dumbo-4582501__480.jpg"}  onClick={ () => currentSlide(1)} alt="The Woods" />
                     </div>
                     <div className="column">
-                        <img className="demo cursor" src={"https://cdn.pixabay.com/photo/2020/11/19/18/56/snow-5759500__480.jpg"} style={{width:"100%"}} onClick={ () => currentSlide(2)} alt="Cinque Terre" />
+                        <img className="demo cursor" src={"https://cdn.pixabay.com/photo/2020/11/19/18/56/snow-5759500__480.jpg"}  onClick={ () => currentSlide(2)} alt="Cinque Terre" />
                     </div>
                     <div className="column">
-                        <img className="demo cursor" src={"https://cdn.pixabay.com/photo/2019/10/27/18/48/dumbo-4582501__480.jpg"} style={{width:"100%"}} onClick={ () => currentSlide(3)} alt="Mountains and fjords" />
+                        <img className="demo cursor" src={"https://cdn.pixabay.com/photo/2019/10/27/18/48/dumbo-4582501__480.jpg"}  onClick={ () => currentSlide(3)} alt="Mountains and fjords" />
                     </div>
                     <div className="column">
-                        <img className="demo cursor" src={"https://cdn.pixabay.com/photo/2020/11/19/18/56/snow-5759500__480.jpg"} style={{width:"100%"}} onClick={ () => currentSlide(4)} alt="Northern Lights" />
+                        <img className="demo cursor" src={"https://cdn.pixabay.com/photo/2020/11/19/18/56/snow-5759500__480.jpg"}  onClick={ () => currentSlide(4)} alt="Northern Lights" />
                     </div>
                     <div className="column">
-                        <img className="demo cursor" src={"https://cdn.pixabay.com/photo/2019/10/27/18/48/dumbo-4582501__480.jpg"} style={{width:"100%"}} onClick={ () => currentSlide(5)} alt="Nature and sunrise" />
+                        <img className="demo cursor" src={"https://cdn.pixabay.com/photo/2019/10/27/18/48/dumbo-4582501__480.jpg"}  onClick={ () => currentSlide(5)} alt="Nature and sunrise" />
                     </div>    
                     <div className="column">
-                        <img className="demo cursor" src={"https://cdn.pixabay.com/photo/2020/11/19/18/56/snow-5759500__480.jpg"} style={{width:"100%"}} onClick={ () => currentSlide(6)} alt="Snowy Mountains" />
+                        <img className="demo cursor" src={"https://cdn.pixabay.com/photo/2020/11/19/18/56/snow-5759500__480.jpg"}  onClick={ () => currentSlide(6)} alt="Snowy Mountains" />
                     </div>
                 </div>
             </div>
+            <GridView list={[1,2,3]}/>
+        </div>
+    );
+}
+
+const GridView = (props) => {
+    return (
+        <div>
+            <div style={{display:'flex', flex:1, flexDirection:'row',  padding:'5px'}}>{props.list.map(e => <GridViewItem item={e} key={e}/>)}</div>
+        </div>
+        
+    );
+}
+
+const GridViewItem = (props) => {
+    return (
+        <div className="gItem" style={{display:'flex', flex:1, flexDirection:'column',justifyContent:'space-around',margin:'10px', backgroundColor:'red',fontSize:'0'}}>
+            <a href="/" target="__blank">
+                <div><img src={"https://cdn.pixabay.com/photo/2020/08/28/21/26/faro-5525698__480.jpg"} width="100%" /></div>
+                <div style={{fontSize:'14px'}}>{props.item}</div>
+            </a>
         </div>
     );
 }
