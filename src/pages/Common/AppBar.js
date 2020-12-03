@@ -7,8 +7,8 @@ const AppBar = (props) => {
     // let [id, setState] = useState(0);   
     return (
         <div className="topnav" id='topnav'>
-            <Link className={props.id === 0 ? "active" : ""} to='/' >HOME</Link>
-            <Link className={props.id === 1 ? "active" : ""} to='/sub' >Sub</Link>
+            <Link className={props.id === 0 ? "active" : ""} to='/myReactDemo' >HOME</Link>
+            <Link className={props.id === 1 ? "active" : ""} to='/myReactDemo/sub' >Sub</Link>
         </div>
     );
 }
