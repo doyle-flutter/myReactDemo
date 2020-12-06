@@ -1,16 +1,14 @@
 img {
     vertical-align: middle;
-    height: 200px;
+    height: 100%;
 }
 
 /* Position the image container (needed to position the left and right arrows) */
 .container {
   background-color: #ddd;
-  position: relative;
   text-align: center;
   width: 100%;
   display: inline-block;
-  
 }
 
 /* Hide the images by default */
@@ -28,10 +26,9 @@ img {
 .next {
   cursor: pointer;
   position: absolute;
-  top: 30%;
+  top: 50%;
   width: auto;
   padding: 16px;
-  margin-top: -50px;
   color: white;
   font-weight: bold;
   font-size: 20px;
@@ -43,10 +40,10 @@ img {
 
 /* Position the "next button" to the right */
 .next {
-  right: 40%;
+  right: 30%;
 }
 .prev{
-  left: 40%;
+  left: 30%;
 }
 
 
@@ -109,6 +106,7 @@ img {
   }
   .prev, .next {
     top: 45%;
+    margin-top: -25px;
   }
   .next {
     right: 10%;

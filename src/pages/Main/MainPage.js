@@ -2,35 +2,60 @@ import {useEffect, useState} from 'react';
 import './Main.css';
   
 const MainPage = () => {
-    let slideIndex = 1;
 
-    function plusSlides(n) {
-        showSlides(slideIndex += n);
-    }
+    const imgList = [
+        {
+            name:'woods1',
+            src:"https://cdn.pixabay.com/photo/2019/10/27/18/48/dumbo-4582501__480.jpg"
+        },
+        {
+            name:'woods2',
+            src:"https://cdn.pixabay.com/photo/2020/11/19/18/56/snow-5759500__480.jpg"
+        },
+        {
+            name:'woods3',
+            src:"https://cdn.pixabay.com/photo/2019/10/27/18/48/dumbo-4582501__480.jpg"
+        },
+        {
+            name:'woods4',
+            src:"https://cdn.pixabay.com/photo/2020/11/19/18/56/snow-5759500__480.jpg"
+        },
+        {
+            name:'woods5',
+            src:"https://cdn.pixabay.com/photo/2019/10/27/18/48/dumbo-4582501__480.jpg"
+        },
+        {
+            name:'woods6',
+            src:"https://cdn.pixabay.com/photo/2020/11/19/18/56/snow-5759500__480.jpg"
+        },
+    ];
+
+
+    let [slideIndexState, setState] = useState({index:1, currentImg:imgList[0]});
     
-    function currentSlide(n) {
-        showSlides(slideIndex = n);
-    }
+    const currentSlide = (n) => setState({index:n,currentImg:imgList[n-1]})
       
-    function showSlides(n) {
-        var i;
-        var slides = document.getElementsByClassName("mySlides");
-        var dots = document.getElementsByClassName("demo");
-        var captionText = document.getElementById("caption");
-        if (n > slides.length) {slideIndex = 1}
-        if (n < 1) {slideIndex = slides.length}
-        for (i = 0; i < slides.length; i++) {
-            slides[i].style.display = "none";
+    const showSlides = (n) => {
+        let i = slideIndexState.index+n;
+        if(i <= 0){
+            return setState({
+                index: imgList.length,
+                currentImg : imgList[imgList.length-1]
+            });
         }
-        for (i = 0; i < dots.length; i++) {
-            dots[i].className = dots[i].className.replace(" active", "");
+        if(i > 6){
+            return setState({
+                index: 1,
+                currentImg : imgList[0]
+            });
         }
-        slides[slideIndex-1].style.display = "block";
-        dots[slideIndex-1].className += " active";
-        captionText.innerHTML = dots[slideIndex-1].alt;
+        return setState({
+            index: i,
+            currentImg : imgList[i-1]
+        });
     }
     
-    useEffect(() => showSlides(slideIndex));
+    useEffect(() => {});
     
     return (
         <div>
@@ -41,83 +66,49 @@ const MainPage = () => {
                 </div>
             </div>
             <div className="container">
-                <div className="mySlides">
-                    <div className="numbertext">{"1 / 6"}</div>
-                    <img src={"https://cdn.pixabay.com/photo/2019/10/27/18/48/dumbo-4582501__480.jpg"}  alt="img"/>
-                </div>
-
-                <div className="mySlides">
-                    <div className="numbertext">{"2 / 6"}</div>
-                    <img src={"https://cdn.pixabay.com/photo/2020/11/19/18/56/snow-5759500__480.jpg"}  alt="img"/>
-                </div>
-
-                <div className="mySlides">
-                    <div className="numbertext">{"3 / 6"}</div>
-                    <img src={"https://cdn.pixabay.com/photo/2019/10/27/18/48/dumbo-4582501__480.jpg"}  alt="img"/>
+                <div className="mySlidesq">
+                    <div className="numbertext">{slideIndexState.index + "/ 6"}</div>
+                    <img src={slideIndexState.currentImg.src}  alt={slideIndexState.currentImg.name}/>
                 </div>
                     
-                <div className="mySlides">
-                    <div className="numbertext">{"4 / 6"}</div>
-                    <img src={"https://cdn.pixabay.com/photo/2020/11/19/18/56/snow-5759500__480.jpg"}  alt="img"/>
-                </div>
-
-                <div className="mySlides">
-                    <div className="numbertext">{"5 / 6"}</div>
-                    <img src={"https://cdn.pixabay.com/photo/2019/10/27/18/48/dumbo-4582501__480.jpg"}  alt="img"/>
-                </div>
-                    
-                <div className="mySlides">
-                    <div className="numbertext">{"6 / 6"}</div>
-                    <img src={"https://cdn.pixabay.com/photo/2020/11/19/18/56/snow-5759500__480.jpg"}  alt="img"/>
-                </div>
-                    
-                <button className="prev" onClick={() => plusSlides(-1)}>❮</button>
-                <button className="next" onClick={() => plusSlides(1)}>❯</button>
+                <button className="prev" onClick={() => showSlides(-1)}>❮</button>
+                <button className="next" onClick={() => showSlides(1)}>❯</button>
 
                 <div className="caption-container">
-                    <p id="caption"></p>
+                    <p id="caption">{slideIndexState.currentImg.name}</p>
                 </div>
                 <div className="row">
-                    <div className="column">
-                        <img className="demo cursor" src={"https://cdn.pixabay.com/photo/2019/10/27/18/48/dumbo-4582501__480.jpg"}  onClick={ () => currentSlide(1)} alt="The Woods" />
-                    </div>
-                    <div className="column">
-                        <img className="demo cursor" src={"https://cdn.pixabay.com/photo/2020/11/19/18/56/snow-5759500__480.jpg"}  onClick={ () => currentSlide(2)} alt="Cinque Terre" />
-                    </div>
-                    <div className="column">
-                        <img className="demo cursor" src={"https://cdn.pixabay.com/photo/2019/10/27/18/48/dumbo-4582501__480.jpg"}  onClick={ () => currentSlide(3)} alt="Mountains and fjords" />
-                    </div>
-                    <div className="column">
-                        <img className="demo cursor" src={"https://cdn.pixabay.com/photo/2020/11/19/18/56/snow-5759500__480.jpg"}  onClick={ () => currentSlide(4)} alt="Northern Lights" />
-                    </div>
-                    <div className="column">
-                        <img className="demo cursor" src={"https://cdn.pixabay.com/photo/2019/10/27/18/48/dumbo-4582501__480.jpg"}  onClick={ () => currentSlide(5)} alt="Nature and sunrise" />
-                    </div>    
-                    <div className="column">
-                        <img className="demo cursor" src={"https://cdn.pixabay.com/photo/2020/11/19/18/56/snow-5759500__480.jpg"}  onClick={ () => currentSlide(6)} alt="Snowy Mountains" />
-                    </div>
+                    {imgList.map(
+                        e => <div className="column" key={e.name}><img className="demo cursor" src={e.src}  onClick={ () => currentSlide(imgList.indexOf(e)+1)} alt={e.name} /></div>)}
                 </div>
             </div>
-            <GridView list={[1,2,3]}/>
+            <View list={[1,2,3]}/>
         </div>
     );
 }
 
-const GridView = (props) => {
+const View = (props) => {
     return (
         <div>
-            <div style={{display:'flex', flex:1, flexDirection:'row',  padding:'5px'}}>{props.list.map(e => <GridViewItem item={e} key={e}/>)}</div>
+            <div style={{textAlign:'center', fontSize:0}}>
+                {props.list.map(e => <ViewItem item={e} key={e}/>)}
+            </div>
         </div>
         
     );
 }
 
-const GridViewItem = (props) => {
+const ViewItem = (props) => {
     return (
-        <div className="gItem" style={{display:'flex', flex:1, flexDirection:'column',justifyContent:'space-around',margin:'10px', backgroundColor:'red',fontSize:'0'}}>
+        <div className="gItem" 
+            style={{width:'28vw', height:'30vw', display:'inline-block', margin:'1vw'}}>
             <a href="/" target="__blank">
-                <div><img src={"https://cdn.pixabay.com/photo/2020/08/28/21/26/faro-5525698__480.jpg"} width="100%" /></div>
-                <div style={{fontSize:'14px'}}>{props.item}</div>
+                <div style={{backgroundImage:"url(https://cdn.pixabay.com/photo/2020/08/28/21/26/faro-5525698__480.jpg)",backgroundRepeat:'no-repeat', backgroundSize:'100% 100%', width:'100%', height:'30vw'}}>
+                    <div style={{height:'100%', verticalAlign:'middle' }}>
+                        <div style={{display:'inline-block', height:'100%', verticalAlign:'middle'}}></div>
+                        <p style={{display:'inline-block',verticalAlign:'middle', fontSize:'1rem'}}>{props.item}</p>
+                    </div>
+                </div>
             </a>
         </div>
     );
