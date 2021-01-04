@@ -7,4 +7,4 @@
 - [ ] HTTP.Fetch
 - [x] Static File
 - [ ] ...
-- [x] Deploy
+- [x] Deploy : [GtihubPages](https://doyle-flutter.github.io/myReactDemo/)
